@@ -4,46 +4,44 @@ body{
 
 .container{
     margin: 60px;
-    display: flex;
-    flex-direction: column;
 }
 
 .timeline{
     display: flex;
 }
 
-.l-timeline_date{
+.l-timeline__date{
     display: inline-flex;
-    width: 45vw;
-    flex-shrink: 0;
+    flex: 1;
 }
 
-.l-timeline_date--dark{
-    color: #000000;
-}
-
-.l-timeline_date--light{
+.l-timeline__date--light{
     color: #374151;
     font-weight: 500;
 }
 
-.l-timeline_date::after{
+.l-timeline__date::after{
     content: "";
     background: red;
-    width: 0.5vw;
-    height: 5.5rem;
+    min-width: 0.5rem;
+    min-height: 5rem;
+    height: 100%;
     margin-left: auto;
 }
 
-.timeline_details{
-    display: inline-flex;
+.timeline__details{
+    position: relative;
+    flex: 1;
+    margin: 0 2rem;
 }
 
-.timeline_details::before {
+.timeline__details::before {
     content: "";
     background: lightblue;
     border-radius: 50%;
     width: 2.5em;
     height: 2.5em;
-    margin: 10px 24px 0px -24px ;
+    position: absolute;
+    left: -3.5rem;
+    top: 0.7rem;
 }
