@@ -3,9 +3,10 @@
 Codepen URL: https://codepen.io/tushhr1/pen/yLqVzyV
 
 ## Screenshots:
-Laptop View
-![Laptop View](https://user-images.githubusercontent.com/121806732/210938090-9ddaec0a-d03b-4257-9939-f46f1349d1fc.png)
+
+Laptop View:
+![Laptop View](https://user-images.githubusercontent.com/121806732/210948563-4987e099-85ad-449d-b060-3c96b91b907d.png)
 
 
 Mobile View:
-![Mobile View](https://user-images.githubusercontent.com/121806732/210938423-ec29dbfd-a8e9-49c5-a6a3-1a90d4c1a9c4.png)
+![Mobile View](https://user-images.githubusercontent.com/121806732/210948490-dcf33709-24eb-4e4a-bcd9-1ea04c8f5344.png)
