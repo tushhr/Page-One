@@ -1,0 +1,53 @@
+body{
+    font-weight: 800;
+}
+
+.container{
+    margin: 60px;
+    display: flex;
+    flex-direction: column;
+}
+
+.timeline{
+    display: flex;
+}
+
+.l-timeline_date{
+    display: inline-flex;
+    width: 45vw;
+    flex-shrink: 0;
+}
+
+.l-timeline_date--dark{
+    color: #000000;
+}
+
+.l-timeline_date--light{
+    color: #374151;
+    font-weight: 500;
+}
+
+/* ----- Major Change -----*/
+.l-shape-container{
+    width: 3rem;
+}
+
+.line{
+    content: "";
+    background: red;
+    width: 0.5vw;
+    height: 5.5rem;
+  position:absolute;
+  margin-left:1.1rem;
+}
+
+.circle {
+    content: "";
+    background: lightblue;
+    border-radius: 50%;
+    width: 2.5em;
+    height: 2.5em;
+    position: absolute;
+  margin-top:1.3rem;
+  z-index:2;
+}
