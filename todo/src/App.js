@@ -4,7 +4,7 @@ import { TodoContext, TodoListContext } from './context';
 import TodoForm from "./TodoForm.js";
 import TodoList from './TodoList.js';
 
-import './App.css';
+import './App.scss';
 
 
 function App() {
@@ -12,8 +12,8 @@ function App() {
 	const [todoList, setTodoList] = useState([])
 
 	return (
-		<div className="App">
-			<header className="App-header">React To Do App</header>
+		<div className="app">
+			<header className="app__header">React To Do App</header>
 
 			<div className='todo-container'>
 
@@ -22,7 +22,6 @@ function App() {
 				</TodoContext.Provider>
 
 				<TodoListContext.Provider value = {{todoList,setTodoList}}>
-					<h1>hEKK1</h1>
 					<TodoList />
 				</TodoListContext.Provider>
 

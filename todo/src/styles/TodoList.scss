@@ -1,0 +1,32 @@
+.todo-list{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin: 2rem 0rem;
+
+    &__row{
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+.todo{
+    &__details{
+        display: flex;
+        gap: 0.5rem;
+    }
+
+    &__operations{
+        display: flex;
+        gap: 0.5rem;
+    }
+
+    &__title{
+        word-break: break-word;
+        hyphens: auto;
+
+        &--isCompleted{
+            text-decoration: line-through;
+        }
+    }
+}
