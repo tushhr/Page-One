@@ -1,28 +1,54 @@
-import { useContext, useEffect } from "react"
+import { useContext, useState } from "react"
 import { TodoListContext } from "./context"
+
+import EditTodo from "./EditTodo.js"
+
+import './styles/TodoList.scss'
+
 
 export default function TodoList() {
 	const {todoList, setTodoList} = useContext(TodoListContext);
 
-	const delelteTodo = (todo) => {
-		setTodoList(todoList.filter((tmp) => {return tmp !== todo}))
+	const [editView, setEditView] = useState(false)
+	const [editableTodo, setEditableTodo] = useState([])
+
+	// Function to delete todo
+	const delelteTodo = (todoToDelete) => {
+		setTodoList(todoList.filter(todo => todo !== todoToDelete))
 	}
 
-	const changeStatusTodo = (todo) =>{
-		setTodoList(todoList.map(e => 
-				e == todo ? {...todo, status: !todo.status} : e
-			))
+	// Function to change the status of todo
+	const changeTodoStatus = (todoToUpdate) =>{
+		setTodoList(todoList.map(todo => todo === todoToUpdate ? {...todoToUpdate, status: !todoToUpdate.status} : todo))
 	}
 
-	return (
-		<div className='todos-list'>
-        	{todoList.map((todo, index) => ( 
-          		<div>
-					<input type="checkbox" checked={todo.status} onChange={() => changeStatusTodo(todo)}></input>
-           			<p key={index} className = {todo.status ? "hidden" : "show"}>{todo.task} </p> 
-					<button onClick={() => delelteTodo(todo)}>Delete</button>
-				</div> 
-			))}
-    	</div>
-    );
+	// Function to call component to edit todo
+	const updateTodo = (todoToUpdate) => {
+		setEditView(true)
+		setEditableTodo(todoToUpdate)
+ 	}
+
+	if (editView){
+		return <EditTodo editableToDo = {editableTodo} setEditView = {setEditView}/>
+	}
+	else{
+		return (
+			<div className='todo-list'>
+				{todoList.map((todo, index) => ( 
+					<div className="todo-list__row tpdo">
+						<div className="todo__details">
+							<input type="checkbox" checked={todo.status} onChange={() => changeTodoStatus(todo)}></input>
+							<div key={index} className = {`todo__title todo__title--${todo.status ? "isCompleted" : ""}`}>{todo.task} </div> 
+						</div>
+
+						<div className="todo__operations">
+							<button onClick={() => updateTodo(todo)}>Edit</button>
+							<button onClick={() => delelteTodo(todo)}>Delete</button>
+						</div>
+					</div>
+				))}
+    		</div>
+		
+		);
+	}
 };
