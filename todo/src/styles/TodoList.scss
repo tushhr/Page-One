@@ -4,9 +4,9 @@
     gap: 1.5rem;
     margin: 2rem 0rem;
 
-    &__row{
+    &__header{
         display: flex;
-        justify-content: space-between;
+        margin-bottom: 1.5rem;
     }
 }
 
@@ -18,15 +18,21 @@
 
     &__operations{
         display: flex;
+        justify-content: flex-end;
         gap: 0.5rem;
     }
 
     &__title{
         word-break: break-word;
         hyphens: auto;
+        font-size: 2.5rem;
 
         &--isCompleted{
             text-decoration: line-through;
         }
+    }
+
+    &__description{
+        margin: 0rem 0rem 1rem 1.75rem;
     }
 }

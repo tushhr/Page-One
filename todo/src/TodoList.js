@@ -35,17 +35,20 @@ export default function TodoList() {
 		return (
 			<div className='todo-list'>
 				{todoList.map((todo, index) => ( 
-					<div className="todo-list__row tpdo">
-						<div className="todo__details">
-							<input type="checkbox" checked={todo.status} onChange={() => changeTodoStatus(todo)}></input>
-							<div key={index} className = {`todo__title todo__title--${todo.status ? "isCompleted" : ""}`}>{todo.task} </div> 
+					<div className="todo-list__row todo">
+						<div className="todo-list__header">
+							<div className="todo__details">
+								<input type="checkbox" checked={todo.status} onChange={() => changeTodoStatus(todo)}></input>
+								<div key={index} className = {`todo__title todo__title--${todo.status ? "isCompleted" : ""}`}>{todo.task} </div>
+							</div>
 						</div>
-
+						<div key={index} className = {`todo__description todo__title--${todo.status ? "isCompleted" : ""}`}>{todo.desc} </div> 
 						<div className="todo__operations">
-							<button onClick={() => updateTodo(todo)}>Edit</button>
-							<button onClick={() => delelteTodo(todo)}>Delete</button>
-						</div>
+								<button onClick={() => updateTodo(todo)}>Edit</button>
+								<button onClick={() => delelteTodo(todo)}>Delete</button>
+							</div>
 					</div>
+
 				))}
     		</div>
 		

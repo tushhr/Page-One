@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { TodoContext, TodoListContext } from './context';
+import { TodoContext, TodoListContext, TodoDescContext } from './context';
 import TodoForm from "./TodoForm.js";
 import TodoList from './TodoList.js';
 
@@ -9,7 +9,11 @@ import './App.scss';
 
 function App() {
 	const [todo, setTodo] = useState("");
+	const [todoDesc, setTodoDesc] = useState("");
 	const [todoList, setTodoList] = useState([])
+
+
+	const [todoFom, setTodoForm] = useState(false)
 
 	return (
 		<div className="app">
@@ -17,14 +21,29 @@ function App() {
 
 			<div className='todo-container'>
 
-				<TodoContext.Provider value = {{todo, todoList, setTodo, setTodoList}}>
-					<TodoForm />
-				</TodoContext.Provider>
+				{todoFom ? 
+					(
+						<TodoListContext.Provider value = {{todoList,setTodoList}}>
+						<TodoContext.Provider value = {{todo, todoDesc, setTodo}}>
+						<TodoDescContext.Provider value = {{todoDesc, setTodoDesc}}>
+							<TodoForm setTodoForm = {setTodoForm}/>
+						</TodoDescContext.Provider>
+						</TodoContext.Provider>
+						</TodoListContext.Provider>
+					)
+					:
+					(
+						<>
+							<div class="create-todo">
+								<button  onClick={() => {setTodoForm(true)}}>Create a todo.</button>
+							</div>
 
-				<TodoListContext.Provider value = {{todoList,setTodoList}}>
-					<TodoList />
-				</TodoListContext.Provider>
-
+							<TodoListContext.Provider value = {{todoList,setTodoList}}>
+								<TodoList />
+							</TodoListContext.Provider>
+						</>
+					)
+				}
 			</div> 
 		</div>
   );

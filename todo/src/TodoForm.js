@@ -1,13 +1,15 @@
 import { useContext } from "react"
-import { TodoContext } from "./context"
+import { TodoContext, TodoListContext, TodoDescContext } from "./context"
 
 import './styles/TodoForm.scss'
 
-export default function TodoForm() {
+export default function TodoForm({setTodoForm}) {
 
-    const {todo, todoList, setTodo, setTodoList} = useContext(TodoContext);
+    const {todo, setTodo} = useContext(TodoContext);
+    const {todoList, setTodoList} = useContext(TodoListContext);
+    const {todoDesc, setTodoDesc} = useContext(TodoDescContext);
 
-    const modifyTodoInput = (e) => setTodo(e.target.value);
+    // const modifyTodoInput = (e) => ;
     const addTodoItem = (e) => {
         e.preventDefault();
 
@@ -19,16 +21,23 @@ export default function TodoForm() {
         const newTodo = {
             id: id,
             task: todo,
+            desc: todoDesc,
             status: false,
         };
         setTodoList([...todoList, newTodo]);
 
         setTodo("");
+        setTodoDesc("");
+
+        setTodoForm(false);
     };
 
     return (
         <form className='todo-form' onSubmit={addTodoItem}>
-            <input type="text" className="todo-form__input" id="todo-inputBox" placeholder="Add any new todo" value={todo} onChange={modifyTodoInput}/>
+            <div className="todo-form__fields">
+                <input type="text" className="todo-form__input" placeholder="Add any new todo" value={todo} onChange={(e) => setTodo(e.target.value)}/>
+                <textarea type="text" className="todo-form__input todo-form__desc" placeholder="Write description here..." value={todoDesc} onChange={(e) => setTodoDesc(e.target.value)}/>
+            </div>
             <button id="todo-submitButton" className="todo-form__button">Add todo!</button>
         </form>
     )
