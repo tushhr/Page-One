@@ -1,0 +1,38 @@
+.todo-list{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin: 2rem 0rem;
+
+    &__header{
+        display: flex;
+        margin-bottom: 1.5rem;
+    }
+}
+
+.todo{
+    &__details{
+        display: flex;
+        gap: 0.5rem;
+    }
+
+    &__operations{
+        display: flex;
+        justify-content: flex-end;
+        gap: 0.5rem;
+    }
+
+    &__title{
+        word-break: break-word;
+        hyphens: auto;
+        font-size: 1.8rem;
+
+        &--isCompleted{
+            text-decoration: line-through;
+        }
+    }
+
+    &__description{
+        margin: 0rem 0rem 1rem 1.75rem;
+    }
+}
