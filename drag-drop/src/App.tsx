@@ -1,35 +1,34 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import {useState} from 'react';
+import {DndContext} from '@dnd-kit/core';
 
-function App() {
-  const [count, setCount] = useState(0)
+import Dropzone from './components/Dropzone';
+import Droppable from './components/Droppable';
+import Draggable from './components/Draggable';
+
+export default function App() {
+  const containers = [1, 2, 3];
+  const [parent, setParent] = useState(null);
+
+  const draggableMarkup = (
+    <Draggable id="draggable">Drag me</Draggable>
+  );
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <DndContext onDragEnd={handleDragEnd}>
+      {parent === null ? draggableMarkup : null}
 
-export default App
+      <div style={{display: 'flex', gap: '2rem', justifyContent: 'centre'}}>
+        {containers.map((id) => (
+          <Droppable id={id}>
+            <Dropzone id={id} droppable={id === parent}/>
+          </Droppable>
+        ))}
+      </div>
+    </DndContext>
+  );
+
+  function handleDragEnd(event: any) {
+    const {over} = event;
+    setParent(over ? over.id : null);
+  }
+};
